@@ -1,5 +1,8 @@
 use rand::Rng;
 
+mod error;
+pub use error::Error;
+
 pub fn generate_password() -> Result<String, anyhow::Error> {
     const CHARSET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZ\
                             abcdefghijklmnopqrstuvwxyz\
