@@ -29,3 +29,8 @@ Password copied to clipboard ✅
 ```
 
 That's it, you are ready to go!
+
+
+## Acknowledgements
+
+Knapp, K. B., & The Clap Community. (2025). clap (Version 4.5.34) [Computer software]. https://github.com/clap-rs/clap
