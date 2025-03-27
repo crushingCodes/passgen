@@ -1,4 +1,3 @@
-use rand::{Rng, thread_rng};
 use rand::{Rng, rng};
 
 mod error;
@@ -11,7 +10,6 @@ pub fn generate_password(password_len: Option<usize>) -> Result<String, anyhow::
                             ()*&^%$#@!~";
 
     let password_len = password_len.unwrap_or(30);
-    let mut rng = thread_rng();
     let mut rng = rng();
 
     let password: String = (0..password_len)
@@ -21,4 +19,27 @@ pub fn generate_password(password_len: Option<usize>) -> Result<String, anyhow::
         })
         .collect();
     Ok(password)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_generate_password_produces_result() {
+        let result = generate_password(None);
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_generate_password_has_default_length() {
+        let result = generate_password(None).unwrap();
+        assert_eq!(result.chars().count(), 30);
+    }
+
+    #[test]
+    fn test_generate_password_has_respects_length() {
+        let result = generate_password(Some(5)).unwrap();
+        assert_eq!(result.chars().count(), 5);
+    }
 }
